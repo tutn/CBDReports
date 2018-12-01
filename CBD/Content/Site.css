@@ -1,0 +1,93 @@
+﻿.login-box, .register-box {
+    margin: 12% auto;
+}
+
+    .login-box .validation-summary-errors ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+        .login-box .validation-summary-errors ul > li, .login-box .validation-summary-errors > span {
+            border: 1px solid #ff000040;
+            padding: 2px;
+            background-color: #ff000017;
+            margin-bottom: 2px;
+        }
+
+    .login-box .validation-summary-errors > span {
+        display: block;
+    }
+
+    .login-box .login-logo {
+        background: linear-gradient(60deg, #ec407a, #d81b60);
+        box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4);
+        margin-bottom: 25px;
+    }
+
+        .login-box .login-logo .logo-content {
+            margin-top: -40px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+.login-logo a, .register-logo a {
+    color: #fff;
+}
+
+.sidebar-menu .treeview .treeview-menu > li.menu-active a {
+    /*background-color: #212d32;*/
+    color: #fff;
+}
+
+    .sidebar-menu .treeview .treeview-menu > li.menu-active a::after {
+        content: '';
+        position: absolute;
+        left: calc(100% - 13px);
+        top: 0;
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-right: 15px solid #ecf0f5;
+        clear: both;
+    }
+
+.sidebar-menu .treeview .treeview-menu > li.menu-active i.fa {
+    color: #17ee27 !important;
+}
+
+#modDivIdenticator.i-circle {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+    #modDivIdenticator.i-circle #modIconIdenticator {
+        line-height: 50px;
+        font-size: 35px;
+        color: #fff;
+    }
+
+    #modDivIdenticator.i-circle.danger {
+        border: 5px solid #df1900;
+        background-color: #ff2e13;
+    }
+
+    #modDivIdenticator.i-circle.success {
+        border: 5px solid #00ab20;
+        background-color: #09bf00;
+    }
+
+.modal-header .close {
+    margin-top: -10px;
+}
+
+.navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > h4.lang {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.navbar-nav > .messages-menu > .dropdown-menu > li .menu [data-lang].active {
+    background-color: #f1f1f1;
+}
