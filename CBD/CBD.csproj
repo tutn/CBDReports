@@ -172,9 +172,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ControllerAPIs\SystemManagement\UnitGroupPageController.cs" />
+    <Compile Include="ControllerAPIs\SystemManagement\UnitUserController.cs" />
+    <Compile Include="ControllerAPIs\SystemManagement\GroupUserController.cs" />
+    <Compile Include="ControllerAPIs\SystemManagement\GroupController.cs" />
     <Compile Include="ControllerAPIs\SystemManagement\UserController.cs" />
     <Compile Include="ControllerAPIs\SystemManagement\UnitController.cs" />
     <Compile Include="ControllerAPIs\SystemManagement\PageController.cs" />
+    <Compile Include="Controllers\SystemManagement\UnitGroupPageController.cs" />
+    <Compile Include="Controllers\SystemManagement\UnitUserController.cs" />
+    <Compile Include="Controllers\SystemManagement\GroupUserController.cs" />
+    <Compile Include="Controllers\SystemManagement\GroupController.cs" />
     <Compile Include="Controllers\SystemManagement\UserController.cs" />
     <Compile Include="Controllers\SystemManagement\UnitController.cs" />
     <Compile Include="Controllers\SystemManagement\PageController.cs" />
@@ -282,7 +290,14 @@
     <Content Include="js\angular\angular.min.js" />
     <Content Include="js\angular\ng-file-upload-shim.js" />
     <Content Include="js\angular\ng-file-upload.js" />
+    <Content Include="js\angular\app.js" />
     <Content Include="js\angular\serverUrl.js" />
+    <Content Include="js\angular\SystemManagement\sidebarApp.js" />
+    <Content Include="js\angular\SystemManagement\groupuserApp.js" />
+    <Content Include="js\angular\SystemManagement\groupApp.js" />
+    <Content Include="js\angular\SystemManagement\dashboardApp.js" />
+    <Content Include="js\angular\SystemManagement\unitgrouppageApp.js" />
+    <Content Include="js\angular\SystemManagement\unituserApp.js" />
     <Content Include="js\angular\SystemManagement\userApp.js" />
     <Content Include="js\angular\SystemManagement\unitApp.js" />
     <Content Include="js\angular\trNgGrid.min.js" />
@@ -294,10 +309,15 @@
     <Content Include="js\const.js" />
     <Content Include="js\custom.js" />
     <Content Include="js\angular\SystemManagement\pageApp.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
     <Content Include="Scripts\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
     <Content Include="Scripts\bootstrap-colorpicker\dist\img\bootstrap-colorpicker\alpha-horizontal.png" />
@@ -920,6 +940,8 @@
     <Content Include="Content\css\adminlte.css.map" />
     <Content Include="Content\css\adminlte.min.css.map" />
     <Content Include="Content\img\Icons\Thumbs.db" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="Scripts\bootstrap\dist\css\bootstrap-theme.min.css" />
@@ -7171,6 +7193,10 @@
     <Content Include="Views\Page\Index.cshtml" />
     <Content Include="Views\Unit\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\GroupUser\Index.cshtml" />
+    <Content Include="Views\Group\Index.cshtml" />
+    <Content Include="Views\UnitUser\Index.cshtml" />
+    <Content Include="Views\UnitGroupPage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿var app = angular.module("app", ['trNgGrid']);
+﻿//var app = angular.module("app", ['trNgGrid']);
 app.controller("unitController", unitController);
 app.$inject = ["$scope", "cbdService"];
 
@@ -39,6 +39,10 @@ function unitController($scope, cbdService) {
         $scope.icon = "";
         $scope.order = "";
         $scope.status = "";
+    }
+
+    $scope.changeCode = function (code) {
+        $scope.code = code.toUpperCase();
     }
 
     $scope.setPageSize = function (pageSize) {

@@ -48,36 +48,80 @@ namespace CBD.DAL.Common
             }
         }
 
-        private ISys_PagesRepository _pageRepository;
-        public ISys_PagesRepository PageRepository
+        private IPageRepository _pageRepository;
+        public IPageRepository PageRepository
         {
             get
             {
                 if (this._pageRepository == null)
-                    this._pageRepository = new Sys_PagesRepository(_context);
+                    this._pageRepository = new PageRepository(_context);
                 return _pageRepository;
             }
         }
 
-        private ISys_UnitsRepository _unitRepository;
-        public ISys_UnitsRepository UnitRepository
+        private IUnitRepository _unitRepository;
+        public IUnitRepository UnitRepository
         {
             get
             {
                 if (this._unitRepository == null)
-                    this._unitRepository = new Sys_UnitsRepository(_context);
+                    this._unitRepository = new UnitRepository(_context);
                 return _unitRepository;
             }
         }
 
-        private ISys_UsersRepository _userRepository;
-        public ISys_UsersRepository UserRepository
+        private IUserRepository _userRepository;
+        public IUserRepository UserRepository
         {
             get
             {
                 if (this._userRepository == null)
-                    this._userRepository = new Sys_UsersRepository(_context);
+                    this._userRepository = new UserRepository(_context);
                 return _userRepository;
+            }
+        }
+
+        private IGroupRepository _groupRepository;
+        public IGroupRepository GroupRepository
+        {
+            get
+            {
+                if (this._groupRepository == null)
+                    this._groupRepository = new GroupRepository(_context);
+                return _groupRepository;
+            }
+        }
+
+        private IUnitUserRepository _unitUserRepository;
+        public IUnitUserRepository UnitUserRepository
+        {
+            get
+            {
+                if (this._unitUserRepository == null)
+                    this._unitUserRepository = new UnitUserRepository(_context);
+                return _unitUserRepository;
+            }
+        }
+
+        private IUnitGroupPageRepository _unitGroupPageRepository;
+        public IUnitGroupPageRepository UnitGroupPageRepository
+        {
+            get
+            {
+                if (this._unitGroupPageRepository == null)
+                    this._unitGroupPageRepository = new UnitGroupPageRepository(_context);
+                return _unitGroupPageRepository;
+            }
+        }
+
+        private IRepository<TBL_SYS_GROUP_USERS, int> _groupUserRepository;
+        public IRepository<TBL_SYS_GROUP_USERS, int> GroupUserRepository
+        {
+            get
+            {
+                if (this._groupUserRepository == null)
+                    this._groupUserRepository = new Repository<TBL_SYS_GROUP_USERS, int>(_context);
+                return _groupUserRepository;
             }
         }
 

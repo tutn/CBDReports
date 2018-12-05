@@ -2,7 +2,7 @@
 using CBD.BAL.Managers;
 using CBD.Model;
 using CBD.Model.Common;
-using CBD.Model.Sys_User;
+using CBD.Model.User;
 using CBD.Model.Utilities;
 using System;
 using System.IO;

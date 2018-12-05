@@ -1,6 +1,6 @@
-﻿var app = angular.module("app", ['trNgGrid', 'ngFileUpload']);
+﻿//var app = angular.module("app", ['trNgGrid', 'ngFileUpload']);
 app.controller("userController", userController);
-app.$inject = ["$scope", "cbdService", "Upload"];
+app.$inject = ["$scope", "cbdService"];
 
 function userController($scope, cbdService, Upload) {
     $scope.pageNumber = 0;

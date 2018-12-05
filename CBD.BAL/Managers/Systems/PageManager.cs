@@ -3,7 +3,7 @@ using System.Reflection;
 using System;
 using System.Net;
 using CBD.Model.Common;
-using CBD.Model.Sys_Page;
+using CBD.Model.Page;
 using CBD.DAL.Common;
 using CBD.Model;
 using CBD.DAL.Entities;
@@ -299,10 +299,63 @@ namespace CBD.BAL.Managers
             return dataLst;
         }
 
+        public Result GetNodes()
+        {
+            var result = new Result();
+            try
+            {
+                using (IUnitOfWork unitOfWork = new UnitOfWork())
+                {
+                    var data = unitOfWork.PageRepository.QueryAll();
+                    if (data == null)
+                    {
+                        result.Code = (short)HttpStatusCode.NotFound;
+                        result.Message = "Search pages unsuccessfully!";
+                        return result;
+                    }
+                    var resultData = GetNodes(data, null);
+
+                    result.Code = (short)HttpStatusCode.OK;
+                    result.Data = resultData;
+                    result.Message = "Search pages successfully!";
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+                result.Code = (short)HttpStatusCode.ExpectationFailed;
+                result.Message = "Search pages unsuccessfully!";
+                return result;
+            }
+            return result;
+        }
+
+        //public List<Model.Node> GetNodes()
+        //{
+        //    var dataList = new List<Model.Node>();
+        //    try
+        //    {
+        //        using (IUnitOfWork unitOfWork = new UnitOfWork())
+        //        {
+        //            var data = unitOfWork.PageRepository.QueryAll();
+        //            if (data == null)
+        //            {
+        //                return null;
+        //            }
+        //            dataList = GetNodes(data, null);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _log.Error(ex);
+        //        return null;
+        //    }
+        //    return dataList;
+        //}
+
         private List<TBL_SYS_PAGES> GetChildren(IQueryable<TBL_SYS_PAGES> dataList, int? parentId)
         {
             var dataLst = new List<TBL_SYS_PAGES>();
-            var prefixcharactor = string.Empty;
             var objs = dataList.Where(f => f.PARENT_ID == parentId).OrderBy(o => o.ID);
 
             foreach (var item in objs)
@@ -310,6 +363,31 @@ namespace CBD.BAL.Managers
                 dataLst.Add(item);
                 var subdata = GetChildren(dataList, item.ID);
                 dataLst.AddRange(subdata);
+            }
+
+            return dataLst;
+        }
+
+        private List<Model.Node> GetNodes(IQueryable<TBL_SYS_PAGES> dataList, int? parentId)
+        {
+            var dataLst = new List<Model.Node>();
+            var objs = dataList.Where(f => f.PARENT_ID == parentId).OrderBy(o => o.ID);
+            Model.Node node;
+            foreach (var item in objs)
+            {
+                node = new Model.Node();
+                node.CODE = item.CODE;
+                node.NAME = item.NAME;
+                node.NAME_VI = item.NAME_VI;
+                node.NAME_EN = item.NAME_EN;
+                node.URL = item.URL;
+                node.ICON = item.ICON;
+                node.PARENT_ID = item.PARENT_ID;
+                node.ORDER = item.ORDER;
+                node.USED_STATE = item.USED_STATE;
+                node.Nodes = GetNodes(dataList, item.ID);
+
+                dataLst.Add(node);
             }
 
             return dataLst;

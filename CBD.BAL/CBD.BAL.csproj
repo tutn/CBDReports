@@ -50,9 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Managers\Systems\GroupUserManager.cs" />
+    <Compile Include="Managers\Systems\IGroupUserManager.cs" />
+    <Compile Include="Managers\Systems\IGroupManager.cs" />
+    <Compile Include="Managers\Systems\IUnitGroupPageManager.cs" />
+    <Compile Include="Managers\Systems\IUnitUserManager.cs" />
     <Compile Include="Managers\Systems\IUserManager.cs" />
     <Compile Include="Managers\Systems\IUnitManager.cs" />
     <Compile Include="Managers\Systems\IPageManager.cs" />
+    <Compile Include="Managers\Systems\GroupManager.cs" />
+    <Compile Include="Managers\Systems\UnitGroupPageManager.cs" />
+    <Compile Include="Managers\Systems\UnitUserManager.cs" />
     <Compile Include="Managers\Systems\UserManager.cs" />
     <Compile Include="Managers\Systems\UnitManager.cs" />
     <Compile Include="Managers\Systems\PageManager.cs" />

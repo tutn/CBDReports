@@ -1,6 +1,7 @@
 ﻿using CBD.Model;
 using CBD.Model.Common;
-using CBD.Model.Sys_Page;
+using CBD.Model.Page;
+using System.Collections.Generic;
 
 namespace CBD.BAL.Managers
 {
@@ -11,5 +12,7 @@ namespace CBD.BAL.Managers
         Result Update(SYS_PAGES model);
         Result Delete(SYS_PAGES model);
         Result GetAllPages(int? PageId);
+        Result GetNodes();
+        //List<Node> GetNodes();
     }
 }

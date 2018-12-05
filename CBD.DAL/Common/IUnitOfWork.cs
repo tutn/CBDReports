@@ -8,9 +8,13 @@ namespace CBD.DAL.Common
     {
         CBDDbContext DbContext { get; }
         IRepository<TBL_SYS_DIMDATE, int> DimDateRepository { get; }
-        ISys_PagesRepository PageRepository { get; }
-        ISys_UnitsRepository UnitRepository { get; }
-        ISys_UsersRepository UserRepository { get; }
+        IPageRepository PageRepository { get; }
+        IUnitRepository UnitRepository { get; }
+        IUserRepository UserRepository { get; }
+        IGroupRepository GroupRepository { get; }
+        IUnitUserRepository UnitUserRepository { get; }
+        IRepository<TBL_SYS_GROUP_USERS, int> GroupUserRepository { get; }
+        IUnitGroupPageRepository UnitGroupPageRepository { get; }
         void SaveChanges();
     }
 }

@@ -3,7 +3,7 @@ using System.Reflection;
 using System;
 using System.Net;
 using CBD.Model.Common;
-using CBD.Model.Sys_Unit;
+using CBD.Model.Unit;
 using CBD.DAL.Common;
 using CBD.Model;
 using CBD.DAL.Entities;
@@ -239,6 +239,40 @@ namespace CBD.BAL.Managers
             return result;
         }
 
+        public Result GetUnitNodes()
+        {
+            var result = new Result();
+            try
+            {
+                using (IUnitOfWork unitOfWork = new UnitOfWork())
+                {
+
+                    var data = unitOfWork.UnitRepository.QueryAll();
+                    if (data == null)
+                    {
+                        result.Code = (short)HttpStatusCode.NotFound;
+                        result.Message = "The menu did not found. Please check again!";
+                        return result;
+                    }
+
+                    var dataList = new List<Model.UnitNode>();
+                    dataList = GetNodes(data, null);
+
+                    result.Code = (short)HttpStatusCode.OK;
+                    result.Data = dataList;
+                    result.Message = "Get all menu successfully!";
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+                result.Code = (short)HttpStatusCode.ExpectationFailed;
+                result.Message = "Get all menu unsuccessfully!";
+                return result;
+            }
+            return result;
+        }
+
         #region Private Method
         private List<SYS_UNITS> GetChildren(IQueryable<SYS_UNITS> dataList, int? parentId, string prefixc, string parentprefix, List<int> disableIds, bool isSearch)
         {
@@ -277,6 +311,36 @@ namespace CBD.BAL.Managers
                 dataLst.Add(item);
                 var subdata = GetChildren(dataList, item.ID, prefixc, prefixcharactor, disableIds, isSearch);
                 dataLst.AddRange(subdata);
+            }
+
+            return dataLst;
+        }
+
+        private List<Model.UnitNode> GetNodes(IQueryable<TBL_SYS_UNITS> dataList, int? parentId)
+        {
+            var dataLst = new List<Model.UnitNode>();
+            var objs = dataList.Where(f => f.PARENT_ID == parentId).OrderBy(o => o.ID);
+            Model.UnitNode node;
+            foreach (var item in objs)
+            {
+                node = new Model.UnitNode();
+                node.id = item.ID.ToString();
+                node.name = item.NAME;
+                node.selected = false;
+                node.children = GetNodes(dataList, item.ID);
+                //node.ID = item.ID;
+                //node.CODE = item.CODE;
+                //node.NAME = item.NAME;
+                //node.PARENT_ID = item.PARENT_ID;
+                //node.USED_STATE = item.USED_STATE;
+                //node.DESCRIPTION = item.DESCRIPTION;
+                //node.CREATED_DATE = item.CREATED_DATE;
+                //node.CREATED_BY = item.CREATED_BY;
+                //node.MODIFIED_DATE = item.MODIFIED_DATE;
+                //node.MODIFIED_BY = item.MODIFIED_BY;
+                //node.Nodes = GetNodes(dataList, item.ID);
+
+                dataLst.Add(node);
             }
 
             return dataLst;

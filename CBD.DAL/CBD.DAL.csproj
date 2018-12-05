@@ -64,12 +64,18 @@
     <Compile Include="Entities\TBL_SYS_USERS.cs" />
     <Compile Include="Entities\TBL_SYS_USER_PAGES.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Systems\ISys_UsersRepository.cs" />
-    <Compile Include="Repositories\Systems\ISys_UnitsRepository.cs" />
-    <Compile Include="Repositories\Systems\ISys_PagesRepository.cs" />
-    <Compile Include="Repositories\Systems\Sys_UsersRepository.cs" />
-    <Compile Include="Repositories\Systems\Sys_UnitsRepository.cs" />
-    <Compile Include="Repositories\Systems\Sys_PagesRepository.cs" />
+    <Compile Include="Repositories\Systems\GroupRepository.cs" />
+    <Compile Include="Repositories\Systems\UnitGroupPageRepository.cs" />
+    <Compile Include="Repositories\Systems\IGroupRepository.cs" />
+    <Compile Include="Repositories\Systems\IUnitGroupPageRepository.cs" />
+    <Compile Include="Repositories\Systems\IUnitUserRepository.cs" />
+    <Compile Include="Repositories\Systems\IUserRepository.cs" />
+    <Compile Include="Repositories\Systems\IUnitRepository.cs" />
+    <Compile Include="Repositories\Systems\IPageRepository.cs" />
+    <Compile Include="Repositories\Systems\UnitUserRepository.cs" />
+    <Compile Include="Repositories\Systems\UserRepository.cs" />
+    <Compile Include="Repositories\Systems\UnitRepository.cs" />
+    <Compile Include="Repositories\Systems\PageRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

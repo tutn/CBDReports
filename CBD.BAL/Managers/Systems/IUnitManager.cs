@@ -1,6 +1,6 @@
 ﻿using CBD.Model;
 using CBD.Model.Common;
-using CBD.Model.Sys_Unit;
+using CBD.Model.Unit;
 
 namespace CBD.BAL.Managers
 {
@@ -11,5 +11,6 @@ namespace CBD.BAL.Managers
         Result Update(SYS_UNITS model);
         Result Delete(SYS_UNITS model);
         Result GetAllUnits(int? UnitId);
+        Result GetUnitNodes();
     }
 }

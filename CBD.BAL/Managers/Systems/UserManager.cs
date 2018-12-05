@@ -3,7 +3,7 @@ using System.Reflection;
 using System;
 using System.Net;
 using CBD.Model.Common;
-using CBD.Model.Sys_User;
+using CBD.Model.User;
 using CBD.DAL.Common;
 using CBD.Model;
 using CBD.DAL.Entities;
@@ -200,47 +200,6 @@ namespace CBD.BAL.Managers
 
 
         #region Private Method
-        private List<SYS_UNITS> GetChildren(IQueryable<SYS_UNITS> dataList, int? parentId, string prefixc, string parentprefix, List<int> disableIds, bool isSearch)
-        {
-            var dataLst = new List<SYS_UNITS>();
-            var prefixcharactor = string.Empty;
-            var objs = dataList.Where(f => f.PARENT_ID == parentId).OrderBy(o => o.ID);
-            
-            foreach (var item in objs)
-            {
-                if (disableIds == null || disableIds.Count == 0)
-                {
-                    item.IS_DISABLE = false;
-                }
-                else
-                {
-                    if (disableIds.Contains(item.ID))
-                    {
-                        item.IS_DISABLE = true;
-                    }
-                }
-                
-                if (isSearch)
-                {
-                    item.NAME = string.Format("{0} {1}", prefixcharactor, item.NAME);
-                    item.USEDSTATE_NAME = item.USED_STATE != null && item.USED_STATE > 0 ? Enums.Description((USED_STATE)item.USED_STATE) : string.Empty;
-                }
-                else
-                {
-                    if (parentId != null)
-                    {
-                        prefixcharactor = string.Format("{0}{1}", prefixc, parentprefix);
-                    }
-                    item.NAME = string.Format("{0} {1}", prefixcharactor, item.NAME);
-                }
-
-                dataLst.Add(item);
-                var subdata = GetChildren(dataList, item.ID, prefixc, prefixcharactor, disableIds, isSearch);
-                dataLst.AddRange(subdata);
-            }
-
-            return dataLst;
-        }
         #endregion
     }
 }

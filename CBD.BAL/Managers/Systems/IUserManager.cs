@@ -1,6 +1,6 @@
 ﻿using CBD.Model;
 using CBD.Model.Common;
-using CBD.Model.Sys_User;
+using CBD.Model.User;
 
 namespace CBD.BAL.Managers
 {

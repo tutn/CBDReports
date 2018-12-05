@@ -1,7 +1,7 @@
 ﻿
 using CBD.BAL.Managers;
 using CBD.Model;
-using CBD.Model.Sys_Unit;
+using CBD.Model.Unit;
 using System.Web;
 using System.Web.Http;
 
@@ -62,5 +62,13 @@ namespace CBD.Administration.ControllerAPIs
             var result = _manager.GetAllUnits(UnitId);
             return Ok(result);
         }
+
+        //[HttpGet]
+        //[Route("GetUnitNodes")]
+        //public IHttpActionResult GetUnitNodes()
+        //{
+        //    var result = _manager.GetUnitNodes();
+        //    return Ok(result);
+        //}
     }
 }

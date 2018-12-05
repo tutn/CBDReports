@@ -1,7 +1,7 @@
 ﻿
 using CBD.BAL.Managers;
 using CBD.Model;
-using CBD.Model.Sys_Page;
+using CBD.Model.Page;
 using System.Web;
 using System.Web.Http;
 
@@ -60,6 +60,14 @@ namespace CBD.Administration.ControllerAPIs
         public IHttpActionResult GetAllPages([FromUri] int? PageId)
         {
             var result = _manager.GetAllPages(PageId);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetNodes")]
+        public IHttpActionResult GetNodes()
+        {
+            var result = _manager.GetNodes();
             return Ok(result);
         }
     }

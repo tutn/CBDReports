@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CBD.BAL.Managers;
+using CBD.Model;
 
 namespace CBD.Controllers
 {
@@ -11,6 +13,14 @@ namespace CBD.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult SideBar()
+        {
+            var _manager = new PageManager();
+            var sidebar = new Sidebar();
+            sidebar.Nodes = (List<Node>)_manager.GetNodes().Data;
+            return PartialView("Sidebar",sidebar);
         }
 
         public ActionResult About()

@@ -65,11 +65,11 @@ function menuresponsive() {
 //hide and show left end     
 
 function ShowLoader() {
-    $('.api-loaderadmin').fadeIn();
+    $('.api-loader').fadeIn();
 }
 
 function HideLoader() {
-    $('.api-loaderadmin').fadeOut();
+    $('.api-loader').fadeOut();
 }
 
 /* Display the Message */
