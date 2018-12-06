@@ -103,8 +103,8 @@ function userController($scope, cbdService, Upload) {
 
         if ($scope.files) {
             var ext = $scope.files.name.toLowerCase().split('.').pop();
-            if (ext == $scope.files.name) return;
-            if (ext == 'png' || ext == 'jpg' || ext == 'jpeg') {
+            if (ext === $scope.files.name) return;
+            if (ext === 'png' || ext === 'jpg' || ext === 'jpeg') {
                 Upload.upload({
                     url: '/api/User/Upload',
                     data: { file: $scope.files, username: $scope.username },
