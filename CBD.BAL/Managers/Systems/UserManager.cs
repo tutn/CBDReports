@@ -198,6 +198,42 @@ namespace CBD.BAL.Managers
             }
         }
 
+        public Result GetByUser(SYS_USERS model)
+        {
+            var result = new Result();
+            try
+            {
+                if (model == null)
+                {
+                    result.Code = (short)HttpStatusCode.BadRequest;
+                    result.Message = "The ID is null. Please check again!";
+                    return result;
+                }
+                using (IUnitOfWork unitOfWork = new UnitOfWork())
+                {
+                    var data = unitOfWork.UserRepository.GetByUser(model);
+                    if (data == null)
+                    {
+                        result.Code = (short)HttpStatusCode.NotFound;
+                        result.Message = string.Format("The User did not find. Please check it again!");
+                        return result;
+                    }
+
+                    result.Code = (short)HttpStatusCode.OK;
+                    result.Data = data;
+                    result.Message = string.Format("The User find successfully!");
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex.Message);
+                result.Code = (short)HttpStatusCode.ExpectationFailed;
+                result.Message = string.Format("The User find unsuccessfully!");
+                return result;
+            }
+        }
+
 
         #region Private Method
         #endregion

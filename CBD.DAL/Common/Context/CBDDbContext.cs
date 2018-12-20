@@ -12,6 +12,9 @@ namespace CBD.DAL.Entities
         {
         }
 
+        public virtual DbSet<TBL_INDUSTRY_CATEGORIES> TBL_INDUSTRY_CATEGORIES { get; set; }
+        public virtual DbSet<TBL_INDUSTRY_GLOBAL_DAILY> TBL_INDUSTRY_GLOBAL_DAILY { get; set; }
+        public virtual DbSet<TBL_INDUSTRY_GLOBAL_YEARLY> TBL_INDUSTRY_GLOBAL_YEARLY { get; set; }
         public virtual DbSet<TBL_SYS_GROUP_USERS> TBL_SYS_GROUP_USERS { get; set; }
         public virtual DbSet<TBL_SYS_GROUPS> TBL_SYS_GROUPS { get; set; }
         public virtual DbSet<TBL_SYS_PAGES> TBL_SYS_PAGES { get; set; }

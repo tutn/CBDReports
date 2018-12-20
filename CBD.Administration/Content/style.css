@@ -1,0 +1,155 @@
+.table > caption + thead > tr:first-child > td, .table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > td, .table > thead:first-child > tr:first-child > th {
+    background-color: darkgreen;
+    color: white;
+    border: 1px solid darkgreen;
+}
+
+.table > tbody > tr > td {
+    padding: 3px !important;
+    margin-bottom: 3px !important;
+    /*line-height: 1.42857143;*/
+    vertical-align: top;
+    border: 1px solid darkgreen;
+}
+
+p {
+    margin: 0 0 0 0 !important;
+}
+
+.pagination {
+    margin: 0px !important;
+}
+
+    .pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
+        color: darkgreen;
+        border-color: darkgreen;
+    }
+
+    .pagination > li > a, .pagination > li > span {
+        color: #105286;
+        border: 1px solid darkgreen;
+        padding: 3px 9px;
+    }
+
+.btn {
+    padding: 3px 10px;
+}
+
+.btn-group > .btn-default {
+    color: darkgreen;
+    border-color: darkgreen;
+}
+
+table i {
+    width: 15px;
+    text-align: center;
+    font-size: 14px !important;
+    cursor: pointer;
+    color: #00a65a;
+}
+
+    table i:hover {
+        color: darkgreen;
+    }
+
+table th i {
+    color: #fff;
+}
+
+
+
+.sidebar-menu .treeview .treeview-menu > li.menu-active i.fa {
+    color: #00a65a !important;
+}
+
+.sidebar-menu .treeview .treeview-menu > li.menu-active a {
+    color: #00a65a !important;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url(../Content/img/icons/select-ic.png) !important;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+    select:required {
+        background-image: url(../Content/img/icons/select-req.png) !important;
+    }
+
+input[type="text"]:required, input[type="number"]:required, input[type="email"]:required, input[type="password"]:required{
+    background-image: url(../Content/img/icons/asteric.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+.req-field {
+    background-image: url(../Content/img/icons/asteric.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+.datepicker {
+    background-image: url(../Content/img/icons/calender.png) !important;
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+
+    .datepicker:required {
+        background-image: url(../Content/img/icons/calender-req.png) !important;
+        background-repeat: no-repeat;
+        background-position: center right;
+    }
+
+.vertical-title {
+    font-size: 15px;
+    color: #105286;
+    border: 1px solid #d0d0d0;
+    font-weight: 700;
+    padding: 10px;
+    background-color: #efefef;
+    background-image: url(../Content/img/icons/plus.png) !important;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+    .vertical-title.active {
+        background-image: url(../Content/img/icons/minus.png) !important;
+        background-repeat: no-repeat;
+        background-position: right center;
+    }
+
+.collapse-title {
+    background-image: url(../Content/img/icons/top.png) !important;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+    .collapse-title.active {
+        background-image: url(../Content/img/icons/down.png) !important;
+        background-repeat: no-repeat;
+        background-position: right center;
+    }
+
+.loader {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-image: url(../Content/img/icons/loader.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: 999999;
+}
+
+.page-loader {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.api-loader {
+    background-color: rgba(255, 255, 255, 0.6);
+    display: none;
+}
+

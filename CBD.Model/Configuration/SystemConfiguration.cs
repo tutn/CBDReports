@@ -23,5 +23,35 @@ namespace CBD.Model.Configuration
                 return _prefixc;
             }
         }
+
+        private static List<string> _userNotLdap;
+        public static List<string> UserNotLdap
+        {
+            get
+            {
+                if (_userNotLdap != null && _userNotLdap.Count > 0)
+                {
+                    return _userNotLdap;
+                }
+                var key = ConfigurationManager.AppSettings.AllKeys.FirstOrDefault(x => x.ToUpper() == "USERNOTLDAP");
+                if (!string.IsNullOrEmpty(key)) _userNotLdap = ConfigurationManager.AppSettings[key].Split(';').Select(x => x.Trim()).ToList();
+                return _userNotLdap;
+            }
+        }
+
+        private static string _preDefaultPassword;
+        public static string PREDEFAULTPASSWORD
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(_preDefaultPassword)) return _preDefaultPassword;
+                _preDefaultPassword = ConfigurationManager.AppSettings["PREDEFAULTPASSWORD"];
+                if (string.IsNullOrWhiteSpace(_preDefaultPassword))
+                {
+                    _preDefaultPassword = "VPBank";
+                }
+                return _preDefaultPassword;
+            }
+        }
     }
 }

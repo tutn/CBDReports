@@ -58,6 +58,36 @@ namespace CBD.DAL.Repositories
             return dataList;
         }
 
+        public SYS_USERS GetByUser(SYS_USERS model)
+        {
+            var query = (from u in _dbContext.TBL_SYS_USERS
+                         from uu in _dbContext.TBL_SYS_UNIT_USERS.Where(x => x.USER_NAME.Equals(u.USER_NAME)).DefaultIfEmpty()
+                         from un in _dbContext.TBL_SYS_UNITS.Where(x => x.ID.Equals(uu.UNIT_ID)).DefaultIfEmpty()
+                         from gu in _dbContext.TBL_SYS_GROUP_USERS.Where(x => x.USER_NAME.Equals(u.USER_NAME)).DefaultIfEmpty()
+                         from g in _dbContext.TBL_SYS_GROUPS.Where(x => x.ID.Equals(gu.GROUP_ID)).DefaultIfEmpty()
+                         where (u.USER_NAME.Equals(model.USER_NAME) && u.PASSWORD.Equals(model.PASSWORD))
+                         select new { u, uu, un, gu, g });
+            var user = query != null && query.Count() > 0 ? query.AsEnumerable().Select(s => new SYS_USERS
+            {
+                ID = s.u.ID,
+                USER_NAME = s.u.USER_NAME,
+                PASSWORD = s.u.PASSWORD,
+                FULL_NAME = s.u.FULL_NAME,
+                EMAIL = s.u.EMAIL,
+                AVATAR = s.u.AVATAR,
+                USED_STATE = s.u.USED_STATE,
+                USEDSTATE_NAME = s.u.USED_STATE != null && s.u.USED_STATE > 0 ? Enums.Description((USED_STATE)s.u.USED_STATE) : string.Empty,
+                DESCRIPTION = s.u.DESCRIPTION,
+                CREATED_DATE = s.u.CREATED_DATE,
+                CREATED_BY = s.u.CREATED_BY,
+                MODIFIED_DATE = s.u.MODIFIED_DATE,
+                MODIFIED_BY = s.u.MODIFIED_BY,
+                UNIT_NAME = s.un.NAME,
+                GROUP_NAME = s.g.NAME,
+            }).FirstOrDefault():null;
+            return user;
+        }
+
         #region Private Method
         #endregion
     }

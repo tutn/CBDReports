@@ -1,0 +1,197 @@
+﻿<link rel="stylesheet" href="~/Scripts/datatables.net-bs/css/dataTables.bootstrap.css">
+<script src="~/js/angular/trNgGrid.min.js"></script>
+<script src="~/js/angular/SystemManagement/unitApp.js" ></script>
+<script src="~/js/angular/serverUrl.js"></script>
+<<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Units
+            @*<small>advanced tables</small>*@
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Unit</a></li>
+            <li class="active">@*Data tables*@</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content" ng-controller="unitController" ng-init="init()">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <button class="ng-binding btn btn-success" type="button" ng-click="addModel()"><i class="fa fa-plus"></i> Add</button>
+                    </div>
+                    <form class="form-horizontal">
+                        <div class="box-body">
+                            <div class="row form-group">
+                                <div class="col-xs-2">
+                                    <label for="snamelocal" class="control-label">Code</label>
+                                </div>
+                                <div class="col-xs-3">
+                                    <input type="text" id="snamelocal" class="form-control input-sm" placeholder="Code" ng-model="sCode">
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                                <div class="col-xs-2">
+                                    <label for="snameenglish" class="control-label">Name</label>
+                                </div>
+                                <div class="col-xs-3">
+                                    <input type="text" id="snameenglish" class="form-control input-sm" placeholder="Name" ng-model="sName">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-xs-2">
+                                    <label for="sreportdate" class="control-label">Parent Units</label>
+                                </div>
+                                <div class="col-xs-3">
+                                    <select class="form-control" id="parentPage" ng-model="sParentid" ng-options="item.ID as item.NAME for item in Units">
+                                        <option value="" selected>----- All -----</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                                <div class="col-xs-2">
+                                    <label for="region" class="control-label">Used State</label>
+                                </div>
+                                <div class="col-xs-3">
+                                    <select class="form-control" id="region" ng-model="sStatus" ng-options="item.Value as item.Name for item in Status">
+                                        <option value="" selected>----- All -----</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-xs-5">
+                                </div>
+                                <div class="col-xs-2">
+                                    <button type="submit" class="btn btn-info" ng-click="search()"><i class="fa fa-search"></i> Search</button>
+                                    <button class="btn btn-default" type="button" ng-hide="sCode === '' && sName === '' && (sParentid === '' || sParentid === undefined) && (sStatus === '' || sStatus === undefined)" ng-click="clear(true)"><i class="fa fa-refresh"></i> Reset</button>
+                                </div>
+                                <div class="col-xs-5">
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </form>
+                    <p ng-hide="Items.length > 0">There are record not found.</p>
+                    <div class="box-body" ng-show="Items.length > 0" style="overflow:auto;">
+                        <table class="table-striped angular-grid" tr-ng-grid="" items="Items" page-items="pageSize" total-items="Total" on-data-required="GenerateData(currentPage, pageItems)">
+                            <thead>
+                                <tr>
+                                    <th display-name="CODE" enable-filtering="false" enable-sorting="false"></th>
+                                    <th display-name="NAME" enable-filtering="false" enable-sorting="false"></th>
+                                    <th display-name="PARENT_NAME" enable-filtering="false" enable-sorting="false"></th>
+                                    <th display-name="USEDSTATE_NAME" enable-filtering="false" enable-sorting="false"></th>
+                                    <th enable-filtering="false" enable-sorting="false"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p>{{gridItem.CODE}}</p></td>
+                                    <td><p>{{gridItem.NAME}}</p></td>
+                                    <td><p>{{gridItem.PARENT_NAME}}</p></td>
+                                    <td><p>{{gridItem.USEDSTATE_NAME}}</p></td>
+                                    <td>
+                                        <i class="fa fa-pencil-square" aria-hidden="true" data-toggle="modal" ng-click="editRecord(gridItem)"></i>
+                                        <i class="fa fa-trash" aria-hidden="true" ng-click="deleteRecord(gridItem)"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="...">
+                                            <button type="button" class="btn btn-default" ng-click="setPageSize(10)">10</button>
+                                            <button type="button" class="btn btn-default" ng-click="setPageSize(20)">20</button>
+                                            <button type="button" class="btn btn-default" ng-click="setPageSize(30)">30</button>
+                                        </div>
+                                        <span tr-ng-grid-pager=""></span>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="clear"></div>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+        <!-- Modal -->
+        <div id="dialogModal" class="modal fade" role="dialog" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="col-md-12">
+                    <!-- Horizontal Form -->
+                    <div class="box {{IsEdit == false ? 'box-success' : 'box-warning'}}">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{{IsEdit == false ? 'Add' : 'Update'}} Unit</h3>
+                        </div><!-- /.box-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="status" class="col-sm-2 control-label">Parent Unit</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" ng-model="parentid" ng-options="item.ID as item.NAME disable when item.IS_DISABLE==true for item in Units">
+                                            <option value="" selected>Please select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="code" class="col-sm-2 control-label">Code</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="code" class="form-control input-sm" placeholder="Code" ng-model="code" ng-change="changeCode(code)" maxlength="16" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-sm-2 control-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="name" class="form-control input-sm" placeholder="Name" ng-model="name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status" class="col-sm-2 control-label">Used State</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="status" ng-model="status" ng-options="item.Value as item.Name for item in Status" required>
+                                            <option value="" selected>Please select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div><!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn {{IsEdit == false ? 'btn-success' : 'btn-warning'}} pull-right" ng-disabled="(code=='' || code==undefined) ||(name=='' || name==undefined)||(status=='' || status==undefined)" ng-click="addOrUpdate()"><i class="fa {{IsEdit == false ? 'fa-plus' : 'fa-pencil-square'}}"></i> {{IsEdit == false ? 'Add' : 'Update'}} Unit</button>
+                            </div><!-- /.box-footer -->
+                        </form>
+                    </div><!-- /.box -->
+                </div>
+            </div>
+        </div>
+        <!-- Modal end -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+<!-- DataTables -->
+<!-- jQuery 3 -->
+@*<script src="~/Scripts/jquery/dist/jquery.js"></script>*@
+<!-- Bootstrap 3.3.7 -->
+<script src="~/Scripts/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="~/Scripts/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+@*<script src="~/Scripts/jquery-slimscroll/jquery.slimscroll.min.js"></script>*@
+<!-- FastClick -->
+<script src="~/Scripts/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+@*<script src="../../dist/js/adminlte.min.js"></script>*@
+<!-- AdminLTE for demo purposes -->
+@*<script src="../../dist/js/demo.js"></script>*@
+<!-- page script -->
+@section scripts
+{
+    @*@Scripts.Render("~/bundles/jqueryUI")*@
+    @*<script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({ changeYear: true, yearRange: "-60:+5", dateFormat: 'dd/mm/yy' });
+        });
+    </script>*@
+}

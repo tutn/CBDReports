@@ -39,5 +39,9 @@ namespace CBD.Model
         public string MODIFIED_BY { get; set; }
 
         public string USEDSTATE_NAME { get; set; }
+
+        public string UNIT_NAME { get; set; }
+
+        public string GROUP_NAME { get; set; }
     }
 }

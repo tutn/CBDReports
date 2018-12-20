@@ -10,5 +10,6 @@ namespace CBD.BAL.Managers
         Result Add(SYS_USERS model);
         Result Update(SYS_USERS model);
         Result Delete(SYS_USERS model);
+        Result GetByUser(SYS_USERS model);
     }
 }

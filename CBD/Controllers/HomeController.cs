@@ -27,15 +27,11 @@ namespace CBD.Controllers
                 //    return true;
                 //}
             };
-            //HtmlDocument doctech = htmlWeb.Load("https://www.techcombank.com.vn/cong-cu-tien-ich/ti-gia/ti-gia-chot");
 
-            //var url = "http://data.tradingcharts.com/futures/quotes/kc.html";
-            //var weburrl = new MyWebClient().DownloadString(url);
+            HtmlDocument htmlDocument = htmlWeb.Load("http://data.tradingcharts.com/futures/quotes/oj.html");
+            var data = htmlDocument.DocumentNode.SelectSingleNode("//table[@class='fe_quotes']");
 
-            HtmlDocument htmlDocument = htmlWeb.Load("https://giacaphe.com/gia-ca-phe-truc-tuyen/");
-            //var data = htmlDocument.DocumentNode.SelectSingleNode("//table[@class='fe_quotes'");
-
-            HtmlNodeCollection data = htmlDocument.DocumentNode.SelectNodes("//table");
+            //HtmlNodeCollection data = htmlDocument.DocumentNode.SelectNodes("//table");
             var rows = data.Descendants("tr").ToList();
             List<List<string>> rowValues = new List<List<string>>();
             foreach (var row in rows)
@@ -49,17 +45,17 @@ namespace CBD.Controllers
             }
             var result = rowValues;
 
-            //var UserTable = htmlDocument.DocumentNode.SelectSingleNode("//div[@id='update_quote']").SelectSingleNode("//table[@id='coffee_liffe']").SelectSingleNode("//tbody").SelectNodes("//tr");
-            //foreach (var row in UserTable)
-            //{
-            //    if (row.Attributes["data-source"] != null)
-            //    {
-            //        string Source = row.Attributes["data-source"].Value;
-            //        //string UserName = row.SelectSingleNode("td[@class='tdleft']").InnerText;
-            //        //string Points = row.SelectSingleNode("td[@class='tdLast']").InnerText;
-            //        //Console.WriteLine(Source + "\t" + UserName + "\t" + Points);
-            //    }
-            //}
+            ////var UserTable = htmlDocument.DocumentNode.SelectSingleNode("//div[@id='update_quote']").SelectSingleNode("//table[@id='coffee_liffe']").SelectSingleNode("//tbody").SelectNodes("//tr");
+            ////foreach (var row in UserTable)
+            ////{
+            ////    if (row.Attributes["data-source"] != null)
+            ////    {
+            ////        string Source = row.Attributes["data-source"].Value;
+            ////        //string UserName = row.SelectSingleNode("td[@class='tdleft']").InnerText;
+            ////        //string Points = row.SelectSingleNode("td[@class='tdLast']").InnerText;
+            ////        //Console.WriteLine(Source + "\t" + UserName + "\t" + Points);
+            ////    }
+            ////}
             #endregion
 
             return View();

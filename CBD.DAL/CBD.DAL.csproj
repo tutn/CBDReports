@@ -54,6 +54,9 @@
     <Compile Include="Common\Repository.cs" />
     <Compile Include="Common\UnitOfWork.cs" />
     <Compile Include="Common\Context\CBDDbContext.cs" />
+    <Compile Include="Entities\TBL_INDUSTRY_CATEGORIES.cs" />
+    <Compile Include="Entities\TBL_INDUSTRY_GLOBAL_DAILY.cs" />
+    <Compile Include="Entities\TBL_INDUSTRY_GLOBAL_YEARLY.cs" />
     <Compile Include="Entities\TBL_SYS_DIMDATE.cs" />
     <Compile Include="Entities\TBL_SYS_GROUPS.cs" />
     <Compile Include="Entities\TBL_SYS_GROUP_USERS.cs" />
